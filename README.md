@@ -1,4 +1,4 @@
-Collection of games completed in Godot for the 20 games challenge
+Collection of games completed in [Godot](https://github.com/godotengine/godot) for the 20 games challenge
 [https://20_games_challenge.gitlab.io/](https://20_games_challenge.gitlab.io/)
 
 Completed games:
