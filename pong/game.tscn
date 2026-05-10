@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://dtchwqlmtjm83"]
+
+[ext_resource type="Script" uid="uid://dchstiwrow07w" path="res://game.gd" id="1_feb5d"]
+[ext_resource type="PackedScene" uid="uid://cv6r2wbfv4e8f" path="res://paddle.tscn" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://d1acuaus4g5wk" path="res://ball.gd" id="3_feb5d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwb40"]
+size = Vector2(10, 730)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80nbo"]
+size = Vector2(10, 1280)
+
+[sub_resource type="SphereMesh" id="SphereMesh_fc0e3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7jktm"]
+radius = 13.0
+
+[node name="Game" type="Node2D" unique_id=1961428190]
+script = ExtResource("1_feb5d")
+
+[node name="BallSpawn" type="Marker2D" parent="." unique_id=268385623]
+unique_name_in_owner = true
+position = Vector2(640, 360)
+
+[node name="Divider" type="Line2D" parent="." unique_id=681345157]
+position = Vector2(640, 272)
+points = PackedVector2Array(1, 444, 0.795, -275)
+
+[node name="WallL" type="StaticBody2D" parent="." unique_id=1976681842]
+unique_name_in_owner = true
+position = Vector2(0, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallL" unique_id=1619575123]
+shape = SubResource("RectangleShape2D_mwb40")
+
+[node name="WallR" type="StaticBody2D" parent="." unique_id=1206433440]
+unique_name_in_owner = true
+position = Vector2(1280, 360)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallR" unique_id=322330479]
+shape = SubResource("RectangleShape2D_mwb40")
+
+[node name="WallB" type="StaticBody2D" parent="." unique_id=1788550204]
+position = Vector2(635, 720)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallB" unique_id=1691033468]
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_80nbo")
+
+[node name="WallT" type="StaticBody2D" parent="." unique_id=1011828621]
+position = Vector2(635, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallT" unique_id=608646663]
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_80nbo")
+
+[node name="Control" type="Control" parent="." unique_id=69196017]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 718.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=117463791]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="P1Score" type="Label" parent="Control" unique_id=138723684]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -29.0
+offset_right = -5.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 42
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P2Score" type="Label" parent="Control" unique_id=2066035662]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -29.0
+offset_right = 60.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 42
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="P1Paddle" parent="." unique_id=621633140 instance=ExtResource("2_e2o6t")]
+position = Vector2(80, 330)
+
+[node name="P2Paddle" parent="." unique_id=382158452 instance=ExtResource("2_e2o6t")]
+position = Vector2(1200, 330)
+player = 1
+
+[node name="Ball" type="CharacterBody2D" parent="." unique_id=1895846369]
+position = Vector2(640, 360)
+script = ExtResource("3_feb5d")
+initialSpeed = 450
+ball_speed_increment = 100
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Ball" unique_id=1060544842]
+position = Vector2(0, 1.1920929e-06)
+scale = Vector2(25, 25)
+mesh = SubResource("SphereMesh_fc0e3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=852276129]
+shape = SubResource("CircleShape2D_7jktm")
