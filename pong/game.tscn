@@ -123,6 +123,7 @@ player = 1
 position = Vector2(640, 360)
 script = ExtResource("3_feb5d")
 ball_speed_increment = 100
+maxSpeed = 2500
 serveAngle = 28
 maxPaddleBounceAngle = 40
 

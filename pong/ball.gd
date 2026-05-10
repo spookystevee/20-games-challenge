@@ -78,8 +78,8 @@ func paddleBounce(paddle: Paddle) -> void:
 	# Bounce in opposite direction on the X
 	var dirX = -signf(velocity.x)
 	
-	# Increase speed of the ball before doing the bounce
-	speed += ball_speed_increment
+	# Increase speed of the ball before doing the bounce, clamped to maxSpeed
+	speed = mini(speed + ball_speed_increment, maxSpeed)
 	# set velocity by assigning x direction and rotating by bounceAngle
 	velocity = (Vector2.RIGHT * dirX).rotated(bounceAngle) * speed
 
