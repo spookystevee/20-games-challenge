@@ -6,13 +6,13 @@ enum SERVE {P1, P2}
 @onready var wall_l: StaticBody2D = %WallL
 @onready var wall_r: StaticBody2D = %WallR
 
-
 @export var initialSpeed := 500
 @export var ball_speed_increment := 30
+@export var maxSpeed := 2000
 @export var serveAngle := 30
+@export var maxPaddleBounceAngle := 50
 
 var speed := 0
-var direction = Vector2.ZERO
 
 var serveSide := SERVE.P1
 
@@ -29,9 +29,9 @@ func _input(event) -> void:
 func resetBall() -> void:
 	# Determine side to serve to
 	if serveSide == SERVE.P1:
-		direction = Vector2.LEFT
+		velocity = Vector2.LEFT
 	else:
-		direction = Vector2.RIGHT
+		velocity = Vector2.RIGHT
 	
 	# Reset our speed
 	speed = initialSpeed
@@ -43,29 +43,47 @@ func resetBall() -> void:
 	# Reset ball to our spawn location
 	position = ball_spawn.position
 	# Set our velocity for move_and_collide and rotate accordingly
-	velocity = (direction * speed).rotated(rotation)
+	velocity = (velocity * speed).rotated(rotation)
 
 func _physics_process(delta: float) -> void:
 	var col = move_and_collide(velocity * delta)
 	
 	if col:
-		var obj = col.get_collider()
+		var obj := col.get_collider()
 		if obj == wall_l:
 			# P1 Side wall was hit
 			leftWallHit()
 		elif obj == wall_r:
 			# P2 Side wall was hit
 			rightWallHit()
-		
 		elif obj is Paddle:
-			# If we hit a paddle, increase speed of the ball
-			speed += ball_speed_increment
-			
-		# We can then bounce off of whatever we hit (either paddles, or top/bottom walls)
-		direction = velocity.bounce(col.get_normal()).normalized()
-		velocity = direction * speed
+			# Paddle was hit
+			paddleBounce(obj)
+		else:
+			# Regular bounce for everything else
+			velocity = velocity.bounce(col.get_normal()).normalized() * speed
 
-# Set serving side to opposite player, update score, and reset
+func paddleBounce(paddle: Paddle) -> void:
+	
+	# Get height of collider to get paddle height
+	var paddleHeight = paddle.get_node("CollisionShape2D").shape.size.y
+	
+	# find the location of the ball localized to the paddle, where the bottom is -halfHeight and the top is halfHeight
+	var relativeIntersectY =  (paddle.global_position.y - global_position.y)
+	# normalize our relative intersection between -1 and 1
+	var normalized = clamp(relativeIntersectY / (paddleHeight / 2), -1.0, 1.0)
+	# calculate the angle which to bounce at (in rad)
+	var bounceAngle = normalized * deg_to_rad(maxPaddleBounceAngle)
+	
+	# Bounce in opposite direction on the X
+	var dirX = -signf(velocity.x)
+	
+	# Increase speed of the ball before doing the bounce
+	speed += ball_speed_increment
+	# set velocity by assigning x direction and rotating by bounceAngle
+	velocity = (Vector2.RIGHT * dirX).rotated(bounceAngle) * speed
+
+# Set serving side to opposite player, update score, and reset ball to center
 func leftWallHit() -> void:
 	serveSide = SERVE.P2
 	game.emit_signal("P2Scored")

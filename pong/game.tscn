@@ -8,7 +8,7 @@
 size = Vector2(10, 730)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80nbo"]
-size = Vector2(10, 1280)
+size = Vector2(2, 1280)
 
 [sub_resource type="SphereMesh" id="SphereMesh_fc0e3"]
 
@@ -22,7 +22,7 @@ script = ExtResource("1_feb5d")
 unique_name_in_owner = true
 position = Vector2(640, 360)
 
-[node name="Divider" type="Line2D" parent="." unique_id=681345157]
+[node name="Net" type="Line2D" parent="." unique_id=681345157]
 position = Vector2(640, 272)
 points = PackedVector2Array(1, 444, 0.795, -275)
 
@@ -41,14 +41,14 @@ position = Vector2(1280, 360)
 shape = SubResource("RectangleShape2D_mwb40")
 
 [node name="WallB" type="StaticBody2D" parent="." unique_id=1788550204]
-position = Vector2(635, 720)
+position = Vector2(632, 719)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallB" unique_id=1691033468]
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_80nbo")
 
 [node name="WallT" type="StaticBody2D" parent="." unique_id=1011828621]
-position = Vector2(635, 0)
+position = Vector2(635, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallT" unique_id=608646663]
 rotation = 1.5707964
@@ -113,17 +113,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="P1Paddle" parent="." unique_id=621633140 instance=ExtResource("2_e2o6t")]
-position = Vector2(80, 330)
+position = Vector2(80, 360)
 
 [node name="P2Paddle" parent="." unique_id=382158452 instance=ExtResource("2_e2o6t")]
-position = Vector2(1200, 330)
+position = Vector2(1200, 360)
 player = 1
 
 [node name="Ball" type="CharacterBody2D" parent="." unique_id=1895846369]
 position = Vector2(640, 360)
 script = ExtResource("3_feb5d")
-initialSpeed = 450
 ball_speed_increment = 100
+serveAngle = 28
+maxPaddleBounceAngle = 40
 
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Ball" unique_id=1060544842]
 position = Vector2(0, 1.1920929e-06)

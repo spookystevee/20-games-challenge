@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 enum PLAYER {P1, P2}
 
-const SPEED := 500
+const SPEED := 650
 
 @export var player := PLAYER.P1
 
