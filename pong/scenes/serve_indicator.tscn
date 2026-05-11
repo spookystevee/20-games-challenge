@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://drvabgeoulocg"]
+
+[ext_resource type="AudioStream" uid="uid://dkslj73xsiss6" path="res://sounds/indicator.mp3" id="1_e3x52"]
+[ext_resource type="Texture2D" uid="uid://c2i40pgxx47e6" path="res://sprites/arrow-left-white-1.png" id="2_e3x52"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3obn"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_e3x52")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_e3x52")
+}],
+"loop": true,
+"name": &"serveIndicator",
+"speed": 3.0
+}]
+
+[node name="ServeIndicator" type="Node2D" unique_id=116337160]
+
+[node name="IndicatorAudio" type="AudioStreamPlayer2D" parent="." unique_id=1134223963]
+unique_name_in_owner = true
+stream = ExtResource("1_e3x52")
+
+[node name="Arrow" type="AnimatedSprite2D" parent="." unique_id=24459974]
+unique_name_in_owner = true
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w3obn")
+animation = &"serveIndicator"
+frame_progress = 0.12769325

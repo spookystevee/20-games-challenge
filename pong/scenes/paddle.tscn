@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://cv6r2wbfv4e8f"]
 
 [ext_resource type="Script" uid="uid://c0yhhvf0asknq" path="res://scripts/paddle.gd" id="1_0sbc1"]
+[ext_resource type="Texture2D" uid="uid://7mhtaxel0t7x" path="res://sprites/PaddleP1.png" id="2_pacq5"]
 [ext_resource type="Script" uid="uid://cl2imbio1cgkr" path="res://scripts/player_controller.gd" id="2_y7wee"]
+[ext_resource type="AudioStream" uid="uid://clmjil5wns4yu" path="res://sounds/hit.mp3" id="3_mo4dg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_80nbo"]
 
@@ -12,12 +14,21 @@ size = Vector2(16, 148)
 sync_to_physics = false
 script = ExtResource("1_0sbc1")
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1463686368]
+texture = ExtResource("2_pacq5")
+
 [node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1805172146]
+visible = false
 scale = Vector2(16, 148)
 mesh = SubResource("BoxMesh_80nbo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=588940614]
+visible = false
 shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="paddle_controller" type="Node" parent="." unique_id=1659258040]
 script = ExtResource("2_y7wee")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=944500451]
+stream = ExtResource("3_mo4dg")
+volume_db = -5.474

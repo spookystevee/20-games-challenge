@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://cr6lpr2258t0c"]
+
+[ext_resource type="Texture2D" uid="uid://bx1iuiauoo1i7" path="res://sprites/ImpactPack.png" id="1_uvlp5"]
+
+[resource]
+atlas = ExtResource("1_uvlp5")
+region = Rect2(346, 877, 12, 12)

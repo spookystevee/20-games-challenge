@@ -2,8 +2,17 @@
 
 [ext_resource type="Script" uid="uid://dchstiwrow07w" path="res://scripts/game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://cv6r2wbfv4e8f" path="res://scenes/paddle.tscn" id="2_e2o6t"]
-[ext_resource type="Script" uid="uid://d1acuaus4g5wk" path="res://scripts/ball.gd" id="3_feb5d"]
+[ext_resource type="AudioStream" uid="uid://ccfchsmq4yuc4" path="res://sounds/Music.mp3" id="2_gee14"]
+[ext_resource type="AudioStream" uid="uid://d4htl16ohnvtl" path="res://sounds/P1Score.wav" id="3_gee14"]
 [ext_resource type="Script" uid="uid://b1uy1vomhnlcl" path="res://scripts/ai_controller.gd" id="3_lbhrr"]
+[ext_resource type="FontFile" uid="uid://cutsycn651r7h" path="res://fonts/m3x6.ttf" id="4_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://ynccjdf7vc3r" path="res://sprites/Net.png" id="4_dinhu"]
+[ext_resource type="PackedScene" uid="uid://dhabs3fxf4gxp" path="res://scenes/ball.tscn" id="4_iywne"]
+[ext_resource type="Texture2D" uid="uid://dnv7bpnv1rada" path="res://sprites/Background_space.png" id="4_vtaks"]
+[ext_resource type="PackedScene" uid="uid://drvabgeoulocg" path="res://scenes/serve_indicator.tscn" id="6_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://bbhndbmhdp214" path="res://sprites/PaddleP2.png" id="7_kvpfn"]
+[ext_resource type="Script" uid="uid://ctpa58jy6mxg3" path="res://scenes/serve_indicator.gd" id="7_u5sy4"]
+[ext_resource type="Shader" uid="uid://bwan7dfp2q2tk" path="res://shaders/CRT.gdshader" id="13_kvuet"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwb40"]
 size = Vector2(10, 730)
@@ -11,21 +20,51 @@ size = Vector2(10, 730)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80nbo"]
 size = Vector2(2, 1280)
 
-[sub_resource type="SphereMesh" id="SphereMesh_fc0e3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ir15t"]
+shader = ExtResource("13_kvuet")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.04800000228
+shader_parameter/scanlines_width = 0.16800000798
+shader_parameter/grille_opacity = 0.1650000078375
+shader_parameter/resolution = Vector2(640, 360)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 1.5
+shader_parameter/roll_size = 10.000000475
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.00400000019
+shader_parameter/noise_opacity = 0.04800000228
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.1150000054625
+shader_parameter/aberration = 0.00500004773750006
+shader_parameter/brightness = 1.25
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.0110000005225
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = -0.05
+shader_parameter/vignette_opacity = 0.5
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7jktm"]
-radius = 13.0
+[sub_resource type="CanvasTexture" id="CanvasTexture_ca42v"]
 
 [node name="Game" type="Node2D" unique_id=1961428190]
 script = ExtResource("1_feb5d")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=1778572437]
+stream = ExtResource("2_gee14")
+volume_db = -10.035
+autoplay = true
+
+[node name="ScoreAudio" type="AudioStreamPlayer2D" parent="." unique_id=1236570069]
+unique_name_in_owner = true
+stream = ExtResource("3_gee14")
 
 [node name="BallSpawn" type="Marker2D" parent="." unique_id=268385623]
 unique_name_in_owner = true
 position = Vector2(640, 360)
 
-[node name="Net" type="Line2D" parent="." unique_id=681345157]
-position = Vector2(640, 272)
-points = PackedVector2Array(1, 444, 0.795, -275)
+[node name="Net" type="Sprite2D" parent="." unique_id=1531880153]
+position = Vector2(640, 360)
+texture = ExtResource("4_dinhu")
 
 [node name="WallL" type="StaticBody2D" parent="." unique_id=1976681842]
 unique_name_in_owner = true
@@ -57,21 +96,33 @@ shape = SubResource("RectangleShape2D_80nbo")
 
 [node name="Control" type="Control" parent="." unique_id=69196017]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_right = 1280.0
 offset_bottom = 718.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ColorRect" type="ColorRect" parent="Control" unique_id=117463791]
+[node name="ColorRect" type="TextureRect" parent="Control" unique_id=695913337]
+modulate = Color(0.601223, 0.601223, 0.60122293, 1)
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -99.83276
+offset_top = -56.0
+offset_right = 174.70752
+offset_bottom = 98.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+texture = ExtResource("4_vtaks")
+flip_h = true
 
 [node name="P1Score" type="Label" parent="Control" unique_id=138723684]
 unique_name_in_owner = true
@@ -81,19 +132,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -56.0
+offset_left = -64.0
 offset_top = -29.0
-offset_right = -5.0
+offset_right = -14.0
 offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_0tnpc")
 theme_override_font_sizes/font_size = 42
 text = "0"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="P2Score" type="Label" parent="Control" unique_id=2066035662]
+[node name="P2Score" type="Label" parent="Control" unique_id=1521461797]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
@@ -101,43 +154,48 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 10.0
+offset_left = 16.0
 offset_top = -29.0
-offset_right = 60.0
+offset_right = 66.0
 offset_bottom = 29.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_0tnpc")
 theme_override_font_sizes/font_size = 42
 text = "0"
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="P1Paddle" parent="." unique_id=621633140 instance=ExtResource("2_e2o6t")]
-position = Vector2(80, 360)
+position = Vector2(16, 360)
 
 [node name="P2Paddle" parent="." unique_id=382158452 instance=ExtResource("2_e2o6t")]
-position = Vector2(1200, 360)
+position = Vector2(1264, 360)
 
-[node name="paddle_controller" parent="P2Paddle" index="2" unique_id=1659258040]
+[node name="Sprite2D" parent="P2Paddle" index="0" unique_id=1463686368]
+texture = ExtResource("7_kvpfn")
+flip_h = true
+
+[node name="paddle_controller" parent="P2Paddle" index="3" unique_id=1659258040]
 script = ExtResource("3_lbhrr")
 
-[node name="Ball" type="CharacterBody2D" parent="." unique_id=1895846369 groups=["ball"]]
+[node name="Ball" parent="." unique_id=1672805614 instance=ExtResource("4_iywne")]
 unique_name_in_owner = true
 position = Vector2(640, 360)
-script = ExtResource("3_feb5d")
-ball_speed_increment = 100
-maxSpeed = 2500
-serveAngle = 28
-maxPaddleBounceAngle = 40
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Ball" unique_id=1060544842]
-position = Vector2(0, 1.1920929e-06)
-scale = Vector2(25, 25)
-mesh = SubResource("SphereMesh_fc0e3")
+[node name="ServeIndicator" parent="." unique_id=116337160 instance=ExtResource("6_u5sy4")]
+unique_name_in_owner = true
+z_index = 2
+position = Vector2(635, 322)
+script = ExtResource("7_u5sy4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=852276129]
-shape = SubResource("CircleShape2D_7jktm")
+[node name="CRTEffect" type="Sprite2D" parent="." unique_id=1294295442]
+z_index = 2
+material = SubResource("ShaderMaterial_ir15t")
+position = Vector2(644.00006, 361.97375)
+scale = Vector2(1384, 769.42285)
+texture = SubResource("CanvasTexture_ca42v")
 
 [editable path="P1Paddle"]
 [editable path="P2Paddle"]
