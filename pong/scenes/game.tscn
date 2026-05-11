@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dtchwqlmtjm83"]
 
-[ext_resource type="Script" uid="uid://dchstiwrow07w" path="res://game.gd" id="1_feb5d"]
-[ext_resource type="PackedScene" uid="uid://cv6r2wbfv4e8f" path="res://paddle.tscn" id="2_e2o6t"]
-[ext_resource type="Script" uid="uid://d1acuaus4g5wk" path="res://ball.gd" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://dchstiwrow07w" path="res://scripts/game.gd" id="1_feb5d"]
+[ext_resource type="PackedScene" uid="uid://cv6r2wbfv4e8f" path="res://scenes/paddle.tscn" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://d1acuaus4g5wk" path="res://scripts/ball.gd" id="3_feb5d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwb40"]
 size = Vector2(10, 730)
@@ -117,9 +117,10 @@ position = Vector2(80, 360)
 
 [node name="P2Paddle" parent="." unique_id=382158452 instance=ExtResource("2_e2o6t")]
 position = Vector2(1200, 360)
-player = 1
+player = 2
 
 [node name="Ball" type="CharacterBody2D" parent="." unique_id=1895846369]
+unique_name_in_owner = true
 position = Vector2(640, 360)
 script = ExtResource("3_feb5d")
 ball_speed_increment = 100
