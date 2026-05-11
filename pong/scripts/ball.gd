@@ -1,3 +1,4 @@
+class_name Ball
 extends CharacterBody2D
 
 enum SERVE {P1, P2}

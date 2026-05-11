@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cv6r2wbfv4e8f"]
 
 [ext_resource type="Script" uid="uid://c0yhhvf0asknq" path="res://scripts/paddle.gd" id="1_0sbc1"]
+[ext_resource type="Script" uid="uid://cl2imbio1cgkr" path="res://scripts/player_controller.gd" id="2_y7wee"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_80nbo"]
 
@@ -17,3 +18,6 @@ mesh = SubResource("BoxMesh_80nbo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=588940614]
 shape = SubResource("RectangleShape2D_e2o6t")
+
+[node name="paddle_controller" type="Node" parent="." unique_id=1659258040]
+script = ExtResource("2_y7wee")

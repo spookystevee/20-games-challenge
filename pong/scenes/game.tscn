@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dchstiwrow07w" path="res://scripts/game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://cv6r2wbfv4e8f" path="res://scenes/paddle.tscn" id="2_e2o6t"]
 [ext_resource type="Script" uid="uid://d1acuaus4g5wk" path="res://scripts/ball.gd" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://b1uy1vomhnlcl" path="res://scripts/ai_controller.gd" id="3_lbhrr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwb40"]
 size = Vector2(10, 730)
@@ -117,9 +118,11 @@ position = Vector2(80, 360)
 
 [node name="P2Paddle" parent="." unique_id=382158452 instance=ExtResource("2_e2o6t")]
 position = Vector2(1200, 360)
-player = 2
 
-[node name="Ball" type="CharacterBody2D" parent="." unique_id=1895846369]
+[node name="paddle_controller" parent="P2Paddle" index="2" unique_id=1659258040]
+script = ExtResource("3_lbhrr")
+
+[node name="Ball" type="CharacterBody2D" parent="." unique_id=1895846369 groups=["ball"]]
 unique_name_in_owner = true
 position = Vector2(640, 360)
 script = ExtResource("3_feb5d")
@@ -135,3 +138,6 @@ mesh = SubResource("SphereMesh_fc0e3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=852276129]
 shape = SubResource("CircleShape2D_7jktm")
+
+[editable path="P1Paddle"]
+[editable path="P2Paddle"]
