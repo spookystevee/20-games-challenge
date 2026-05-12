@@ -11,38 +11,15 @@
 [ext_resource type="Texture2D" uid="uid://dnv7bpnv1rada" path="res://sprites/Background_space.png" id="4_vtaks"]
 [ext_resource type="PackedScene" uid="uid://drvabgeoulocg" path="res://scenes/serve_indicator.tscn" id="6_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bbhndbmhdp214" path="res://sprites/PaddleP2.png" id="7_kvpfn"]
-[ext_resource type="Script" uid="uid://ctpa58jy6mxg3" path="res://scenes/serve_indicator.gd" id="7_u5sy4"]
-[ext_resource type="Shader" uid="uid://bwan7dfp2q2tk" path="res://shaders/CRT.gdshader" id="13_kvuet"]
+[ext_resource type="Script" uid="uid://ctpa58jy6mxg3" path="res://scripts/serve_indicator.gd" id="7_u5sy4"]
+[ext_resource type="Material" uid="uid://dqkwiq7l7anr0" path="res://shaders/CRT.tres" id="8_trtic"]
+[ext_resource type="Script" uid="uid://btsqlq5yymbjl" path="res://scripts/camerashake.gd" id="14_trtic"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwb40"]
 size = Vector2(10, 730)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_80nbo"]
 size = Vector2(2, 1280)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ir15t"]
-shader = ExtResource("13_kvuet")
-shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.04800000228
-shader_parameter/scanlines_width = 0.16800000798
-shader_parameter/grille_opacity = 0.1650000078375
-shader_parameter/resolution = Vector2(640, 360)
-shader_parameter/pixelate = false
-shader_parameter/roll = true
-shader_parameter/roll_speed = 1.5
-shader_parameter/roll_size = 10.000000475
-shader_parameter/roll_variation = 1.8
-shader_parameter/distort_intensity = 0.00400000019
-shader_parameter/noise_opacity = 0.04800000228
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.1150000054625
-shader_parameter/aberration = 0.00500004773750006
-shader_parameter/brightness = 1.25
-shader_parameter/discolor = false
-shader_parameter/warp_amount = 0.0110000005225
-shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = -0.05
-shader_parameter/vignette_opacity = 0.5
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ca42v"]
 
@@ -108,17 +85,17 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ColorRect" type="TextureRect" parent="Control" unique_id=695913337]
+[node name="BG" type="TextureRect" parent="Control" unique_id=695913337]
 modulate = Color(0.601223, 0.601223, 0.60122293, 1)
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -99.83276
-offset_top = -56.0
-offset_right = 174.70752
-offset_bottom = 98.0
+offset_left = -280.0
+offset_top = -136.0
+offset_right = 351.0863
+offset_bottom = 218.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_vtaks")
@@ -177,8 +154,9 @@ position = Vector2(1264, 360)
 texture = ExtResource("7_kvpfn")
 flip_h = true
 
-[node name="paddle_controller" parent="P2Paddle" index="3" unique_id=1659258040]
+[node name="paddle_controller" parent="P2Paddle" index="2" unique_id=1659258040]
 script = ExtResource("3_lbhrr")
+deadzoneScaling = Vector2(0.25, 0.5)
 
 [node name="Ball" parent="." unique_id=1672805614 instance=ExtResource("4_iywne")]
 unique_name_in_owner = true
@@ -191,11 +169,16 @@ position = Vector2(635, 322)
 script = ExtResource("7_u5sy4")
 
 [node name="CRTEffect" type="Sprite2D" parent="." unique_id=1294295442]
-z_index = 2
-material = SubResource("ShaderMaterial_ir15t")
-position = Vector2(644.00006, 361.97375)
-scale = Vector2(1384, 769.42285)
+z_index = 3
+material = ExtResource("8_trtic")
+position = Vector2(672, 377.54007)
+scale = Vector2(1552.0001, 862.821)
 texture = SubResource("CanvasTexture_ca42v")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2020645252]
+unique_name_in_owner = true
+position = Vector2(640, 360)
+script = ExtResource("14_trtic")
 
 [editable path="P1Paddle"]
 [editable path="P2Paddle"]

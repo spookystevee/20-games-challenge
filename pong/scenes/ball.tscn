@@ -467,7 +467,6 @@ one_shot = true
 rotation = 1.5707964
 scale = Vector2(3.03, 3.03)
 sprite_frames = SubResource("SpriteFrames_88q0q")
-frame_progress = 0.32912377
 centered = false
 offset = Vector2(-5.57, -11.585)
 flip_h = true

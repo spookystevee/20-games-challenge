@@ -35,6 +35,7 @@ var game: Game
 # signals
 signal paddle_hit(paddle: Paddle, angle: int)
 signal ball_reset(side: int)
+signal ball_bounce
 signal ball_serve
 
 func _ready() -> void:
@@ -100,6 +101,7 @@ func _physics_process(delta: float) -> void:
 			paddleBounce(obj)
 		else:
 			# Regular bounce for everything else
+			ball_bounce.emit()
 			velocity = velocity.bounce(col.get_normal()).normalized() * speed
 			bounce_sound.play()
 
