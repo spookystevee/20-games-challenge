@@ -19,6 +19,8 @@ signal P2Scored
 
 @onready var serve_indicator: ServeIndicator = %ServeIndicator
 
+var total_combo := 0
+
 
 func _ready() -> void:
 	P1Scored.connect(_on_P1Scored)
@@ -26,6 +28,7 @@ func _ready() -> void:
 	var ball: Ball = get_tree().get_first_node_in_group("ball")
 	ball.ball_reset.connect(_on_round_reset)
 	ball.ball_serve.connect(_on_serve)
+	ball.paddle_hit.connect(_on_paddle_hit)
 
 func _on_P1Scored():
 	score_audio.stream = P1ScoreAudio
@@ -43,6 +46,7 @@ func updateLabels() -> void:
 	P2Label.text = str(score[1])
 
 func _on_round_reset(side: int) -> void:
+	total_combo = 0
 	var pos: Vector2
 	var flip: bool
 	if side == 1:
@@ -57,3 +61,6 @@ func _on_round_reset(side: int) -> void:
 
 func _on_serve() -> void:
 	serve_indicator.on_serve()
+
+func _on_paddle_hit(_p: Paddle, _a: float):
+	total_combo += 1

@@ -18,11 +18,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	move_and_collide(Vector2(0, direction) * SPEED * delta)
 
-func _on_ball_hit(paddle: Paddle, angle: float) -> void:
+func _on_ball_hit(paddle: Paddle, _angle: float) -> void:
 	if paddle == self:
-		hit_sound.pitch_scale = 1 + (angle * 0.008) + (currentCombo * .1)
+		hit_sound.pitch_scale += (get_parent().total_combo * .05)
 		hit_sound.play()
 		currentCombo += 1
 
 func _on_reset(_side: int) -> void:
 	currentCombo = 0
+	hit_sound.pitch_scale = 1

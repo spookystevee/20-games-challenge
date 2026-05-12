@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c0yhhvf0asknq" path="res://scripts/paddle.gd" id="1_0sbc1"]
 [ext_resource type="Texture2D" uid="uid://7mhtaxel0t7x" path="res://sprites/PaddleP1.png" id="2_pacq5"]
 [ext_resource type="Script" uid="uid://cl2imbio1cgkr" path="res://scripts/player_controller.gd" id="2_y7wee"]
-[ext_resource type="AudioStream" uid="uid://clmjil5wns4yu" path="res://sounds/hit.mp3" id="3_mo4dg"]
+[ext_resource type="AudioStream" uid="uid://drocc1o8j6ty6" path="res://sounds/hitB.mp3" id="3_mo4dg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(16, 148)
@@ -23,4 +23,3 @@ script = ExtResource("2_y7wee")
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=944500451]
 stream = ExtResource("3_mo4dg")
-volume_db = -5.474
