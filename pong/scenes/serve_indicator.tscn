@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://drvabgeoulocg"]
 
 [ext_resource type="AudioStream" uid="uid://dkslj73xsiss6" path="res://sounds/indicator.mp3" id="1_e3x52"]
-[ext_resource type="Texture2D" uid="uid://c2i40pgxx47e6" path="res://sprites/arrow-left-white-1.png" id="2_e3x52"]
+[ext_resource type="Texture2D" uid="uid://c2i40pgxx47e6" path="res://sprites/arrow.png" id="2_e3x52"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w3obn"]
 animations = [{
@@ -36,4 +36,4 @@ unique_name_in_owner = true
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_w3obn")
 animation = &"serveIndicator"
-frame_progress = 0.12769325
+frame_progress = 0.54297304

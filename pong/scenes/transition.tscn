@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://5btntp16p1c4"]
+
+[ext_resource type="Shader" uid="uid://d4jgxrbtyaoeb" path="res://shaders/transition.gdshader" id="1_rerct"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1abgu"]
+shader = ExtResource("1_rerct")
+shader_parameter/progress = 0.0
+shader_parameter/speed = 0.1
+shader_parameter/pixelation = Vector2(2, 2)
+shader_parameter/zoom = 2.0
+shader_parameter/background_threshold = 0.0
+shader_parameter/color_threshold = 0.24
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/seed = 0.0
+
+[node name="Transition" type="ColorRect" unique_id=278561237]
+material = SubResource("ShaderMaterial_1abgu")
+offset_left = -115.55554
+offset_top = -65.0
+offset_right = 1356.4445
+offset_bottom = 763.0

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b5juwk41fpm18"]
+
+[ext_resource type="Script" uid="uid://bqmfmdcvttwti" path="res://scripts/scene_manager.gd" id="1_we8k5"]
+
+[node name="SceneManager" type="Control" unique_id=244536899]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_we8k5")
