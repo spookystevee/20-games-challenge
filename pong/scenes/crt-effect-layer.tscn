@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://botft4s8psybw"]
+
+[ext_resource type="PackedScene" uid="uid://cdr0kx7mwldth" path="res://scenes/crt_effect.tscn" id="1_ha8ok"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=947463020]
+layer = 1025
+follow_viewport_enabled = true
+
+[node name="CRTEffect" parent="." unique_id=965121202 instance=ExtResource("1_ha8ok")]

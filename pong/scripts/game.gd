@@ -7,8 +7,13 @@ const menu := preload("res://scenes/Menu.tscn")
 const P1ScoreAudio = preload("uid://d4htl16ohnvtl")
 const P2ScoreAudio = preload("uid://bjb6wdfp0sxcu")
 
-var score := [0,0]
-var winner := 0
+#audio for wins
+const P1WinAudio = preload("uid://chvkb1lr2tecp")
+const P2WinAudio = preload("uid://dieki4uskjnci")
+
+var score := [0,0] # holds scores for players; index 0 is P1, index 1 is P2
+var isGameDone := false
+var max_score := 1 #score required to win
 
 # signals
 signal P1Scored
@@ -17,13 +22,13 @@ signal P2Scored
 #object references
 @onready var P1Label: Label = %P1Score
 @onready var P2Label: Label = %P2Score
+@onready var winner_label: Label = %WinnerLabel
 
 @onready var score_audio: AudioStreamPlayer2D = %ScoreAudio
 
 @onready var serve_indicator: ServeIndicator = %ServeIndicator
 
-var total_combo := 0
-
+var total_combo := 0 # the amount of times the ball has hit a paddle this round
 
 func _ready() -> void:
 	P1Scored.connect(_on_P1Scored)
@@ -32,6 +37,12 @@ func _ready() -> void:
 	ball.ball_reset.connect(_on_round_reset)
 	ball.ball_serve.connect(_on_serve)
 	ball.paddle_hit.connect(_on_paddle_hit)
+	P1Scored.connect(_on_anyScored)
+	P2Scored.connect(_on_anyScored)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("quit"):
+		SceneManager.change_scene(menu.resource_path)
 
 func _on_P1Scored():
 	score_audio.stream = P1ScoreAudio
@@ -44,18 +55,38 @@ func _on_P2Scored():
 	score[1] += 1
 	updateLabels()
 
+func _on_anyScored():
+	if score[0] >= max_score:
+		handle_win("PLAYER 1 WINS!", HORIZONTAL_ALIGNMENT_LEFT, P1WinAudio)
+	elif score[1] >= max_score:
+		handle_win("PLAYER 2 WINS!", HORIZONTAL_ALIGNMENT_RIGHT, P2WinAudio)
+
+func handle_win(winText: String, alignment: HorizontalAlignment, audio: AudioStream):
+	isGameDone = true
+	win_slowdown()
+	
+	winner_label.text = winText
+	winner_label.horizontal_alignment = alignment
+	
+	await get_tree().create_timer(1.5).timeout
+	score_audio.stream = audio
+	score_audio.play()
+	winner_label.visible = true
+	
+	await get_tree().create_timer(3.0).timeout
+	SceneManager.change_scene(menu.resource_path)
+
+func win_slowdown():
+	Engine.time_scale = 0.25
+	await get_tree().create_timer(1.5,true,false,true).timeout
+	Engine.time_scale = 1
+
 func updateLabels() -> void:
 	P1Label.text = str(score[0])
 	P2Label.text = str(score[1])
 
 func _on_round_reset(side: int) -> void:
-	if (score[0] == 1):
-		winner = 1
-		SceneManager.change_scene(menu.resource_path)
-	elif (score[1] == 1):
-		winner = 2
-		SceneManager.change_scene(menu.resource_path)
-	else:
+	if !isGameDone:
 		total_combo = 0
 		var pos: Vector2
 		var flip: bool
@@ -70,7 +101,7 @@ func _on_round_reset(side: int) -> void:
 
 
 func _on_serve() -> void:
-		serve_indicator.on_serve()
+	serve_indicator.on_serve()
 
 func _on_paddle_hit(_p: Paddle, _a: float):
 	total_combo += 1

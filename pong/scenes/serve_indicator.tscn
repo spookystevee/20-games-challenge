@@ -30,6 +30,7 @@ animations = [{
 [node name="IndicatorAudio" type="AudioStreamPlayer2D" parent="." unique_id=1134223963]
 unique_name_in_owner = true
 stream = ExtResource("1_e3x52")
+bus = &"SFX"
 
 [node name="Arrow" type="AnimatedSprite2D" parent="." unique_id=24459974]
 unique_name_in_owner = true

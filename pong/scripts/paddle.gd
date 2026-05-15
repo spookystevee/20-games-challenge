@@ -5,10 +5,14 @@ const SPEED := 650
 
 var direction := 0.0
 
+var game: Game
+
 @onready var hit_sound: AudioStreamPlayer2D = $HitSound
 var currentCombo := 0
 
 func _ready() -> void:
+	game = get_parent()
+	
 	var ball = get_tree().get_first_node_in_group("ball")
 	
 	if ball:
@@ -16,7 +20,8 @@ func _ready() -> void:
 		ball.ball_reset.connect(_on_reset)
 
 func _physics_process(delta: float) -> void:
-	move_and_collide(Vector2(0, direction) * SPEED * delta)
+	if !game.isGameDone:
+		move_and_collide(Vector2(0, direction) * SPEED * delta)
 
 func _on_ball_hit(paddle: Paddle, _angle: float) -> void:
 	if paddle == self:

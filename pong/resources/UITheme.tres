@@ -67,7 +67,7 @@ corner_detail = 5
 
 [resource]
 default_font = ExtResource("1_lmais")
-default_font_size = 72
+default_font_size = 50
 Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
 Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
@@ -82,9 +82,11 @@ Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
 Button/colors/icon_normal_color = Color(1, 1, 1, 1)
 Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
 Button/constants/align_to_largest_stylebox = 0
-Button/constants/h_separation = 4
+Button/constants/h_separation = 12
 Button/constants/icon_max_width = 0
-Button/constants/outline_size = 0
+Button/constants/line_spacing = 2
+Button/constants/outline_size = 19
+Button/font_sizes/font_size = 70
 Button/styles/disabled = SubResource("StyleBoxFlat_lmais")
 Button/styles/focus = SubResource("StyleBoxFlat_lvqna")
 Button/styles/hover = SubResource("StyleBoxFlat_6fpo7")

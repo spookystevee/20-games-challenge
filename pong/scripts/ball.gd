@@ -144,4 +144,5 @@ func on_ball_scored() -> void:
 	score_particles.emitting = true
 	score_sprite.visible = true
 	score_sprite.play()
-	reset_timer.start()
+	if !game.isGameDone:
+		reset_timer.start()

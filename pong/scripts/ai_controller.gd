@@ -23,12 +23,14 @@ enum PADDLEPOSITIONS {
 
 # how far the ai is willing to be away from the ball before it is close enough
 var deadzone := 75.0
-var last_hit := false
 
 ### x = lowend scaling, y = highend scaling, controls how close the AI will get the ball to its desiered position. Higher = dumber
 @export var deadzoneScaling := Vector2(.25, .5)
 
 @onready var ball: Ball = get_tree().get_first_node_in_group("ball")
+
+var pauseFollow := true
+var servedToMe := false
 
 func _ready() -> void:
 	ball.paddle_hit.connect(_on_paddle_hit)
@@ -43,6 +45,10 @@ func AIbrain() -> void:
 	if ball == null:
 		return
 	
+	if pauseFollow:
+		paddle.direction = 0
+		return
+	
 	var diff: float = ball.global_position.y - paddle.global_position.y + paddle_locations[desiredHitLocation]
 	
 	# If the distance is within this range, we start braking.
@@ -51,21 +57,19 @@ func AIbrain() -> void:
 	if abs(diff) < deadzone:
 		# if in deadzone, stop completely
 		paddle.direction = 0
-	elif not last_hit:
+	else:
 		# this makes the paddle slow down as it reaches the deadzone edge so hopefully we get less jitter movement
 		# this does make it so the AI paddle uses a different speed than the player can technically
 		# but probably worth the sacrifice tbh
 		var smooth_dir = clamp(diff / brake_margin, -1.0, 1.0)
 		paddle.direction = smooth_dir
-	else:
-		paddle.direction = 0
 
 func _on_paddle_hit(pad: Paddle, _angle: int):
 	if pad != paddle:
-		last_hit = false
+		pauseFollow = false
 		calculate_hit_variance()
 	else:
-		last_hit = true
+		pauseFollow = true
 
 func calculate_hit_variance() -> void:
 	# decide where on the paddle we want to hit
@@ -78,10 +82,13 @@ func calculate_hit_variance() -> void:
 	deadzone = randf_range(lowend, highend)
 
 func _on_reset(side: int):
+	pauseFollow = true
 	if side == myside:
-		last_hit = false
+		servedToMe = true
 	else:
-		last_hit = true
+		servedToMe = false
 
 func _on_serve():
+	if servedToMe:
+		pauseFollow = false
 	calculate_hit_variance()

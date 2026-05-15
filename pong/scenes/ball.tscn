@@ -475,6 +475,7 @@ flip_v = true
 [node name="BounceSound" type="AudioStreamPlayer2D" parent="." unique_id=346862721]
 stream = ExtResource("6_jj7gd")
 volume_db = -8.0
+bus = &"SFX"
 
 [node name="Particles" type="Node2D" parent="." unique_id=1302280901]
 

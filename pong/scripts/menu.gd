@@ -5,6 +5,8 @@ extends Control
 @onready var quit: Button = %Quit
 @onready var focus_arrow: Sprite2D = %FocusArrow
 
+@onready var main_menu: MarginContainer = %MainMenu
+
 var game_scene := ("res://scenes/game.tscn")
 
 
@@ -16,6 +18,10 @@ func _enter_tree() -> void:
 			# grab focus when mouse entered so we can play the animation on mouse hover
 			node.mouse_entered.connect(node.grab_focus)
 	)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("quit"):
+		_on_quit_pressed()
 
 func _ready() -> void:
 	start.grab_focus()
@@ -30,7 +36,6 @@ func _on_start_focus_entered() -> void:
 
 func _on_settings_focus_entered() -> void:
 	focus_arrow.reparent(settings.get_node("ArrowMark"), false)
-
 
 func _on_quit_focus_entered() -> void:
 	focus_arrow.reparent(quit.get_node("ArrowMark"), false)

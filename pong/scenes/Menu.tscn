@@ -50,7 +50,8 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("1_upctu")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1917658239]
+[node name="MainMenu" type="MarginContainer" parent="." unique_id=1917658239]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,86 +59,106 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("4_jmdev")
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_bottom = 50
 
-[node name="Title" type="Label" parent="MarginContainer" unique_id=1940131664]
+[node name="Title" type="Label" parent="MainMenu" unique_id=1940131664]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.582129, 0.8897387, 0.858352, 1)
+theme_override_colors/font_outline_color = Color(0.0695073, 0.19957817, 0.23702961, 1)
+theme_override_constants/outline_size = 32
+theme_override_constants/shadow_outline_size = 1
 theme_override_fonts/font = ExtResource("2_11y2r")
-theme_override_font_sizes/font_size = 201
-text = "SPACE DEFENSE"
+theme_override_font_sizes/font_size = 155
+text = "ULTIMATE
+SPACE PONG"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Buttons" type="Control" parent="MarginContainer" unique_id=1774795267]
+[node name="Buttons" type="Control" parent="MainMenu" unique_id=1774795267]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Buttons" unique_id=1233483625]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Buttons" unique_id=1233483625]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -96.0
-offset_top = -254.0
-offset_right = 96.0
+offset_left = -95.999985
+offset_top = -133.0
+offset_right = 96.000015
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 4
 
-[node name="FocusArrow" type="Sprite2D" parent="MarginContainer/Buttons/VBoxContainer" unique_id=2140368487]
+[node name="FocusArrow" type="Sprite2D" parent="MainMenu/Buttons/VBoxContainer" unique_id=2140368487]
 unique_name_in_owner = true
 position = Vector2(16, 0)
-scale = Vector2(2.5, 2)
+scale = Vector2(5, 4)
 texture = ExtResource("5_b6cxs")
 flip_h = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/Buttons/VBoxContainer/FocusArrow" unique_id=1027977514]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainMenu/Buttons/VBoxContainer/FocusArrow" unique_id=1027977514]
 libraries/ = SubResource("AnimationLibrary_1abgu")
 autoplay = &"button_focus"
 
-[node name="Start" type="Button" parent="MarginContainer/Buttons/VBoxContainer" unique_id=750577948]
+[node name="Start" type="Button" parent="MainMenu/Buttons/VBoxContainer" unique_id=750577948]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("4_jmdev")
+theme_override_colors/font_color = Color(0.45444822, 0.84175426, 0.66383076, 1)
+theme_override_colors/font_focus_color = Color(0.3773009, 0.7539969, 0.5824345, 1)
+theme_override_colors/font_pressed_color = Color(0.3399011, 0.7004027, 0.5373908, 1)
+theme_override_font_sizes/font_size = 170
 text = "START"
 
-[node name="ArrowMark" type="Marker2D" parent="MarginContainer/Buttons/VBoxContainer/Start" unique_id=1832326795]
-position = Vector2(6, 40)
+[node name="ArrowMark" type="Marker2D" parent="MainMenu/Buttons/VBoxContainer/Start" unique_id=1832326795]
+position = Vector2(-59.5, 85)
+gizmo_extents = 36.1
 
-[node name="Settings" type="Button" parent="MarginContainer/Buttons/VBoxContainer" unique_id=1987432208]
+[node name="Settings" type="Button" parent="MainMenu/Buttons/VBoxContainer" unique_id=1987432208]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 theme = ExtResource("4_jmdev")
 text = "SETTINGS
 "
 
-[node name="ArrowMark" type="Marker2D" parent="MarginContainer/Buttons/VBoxContainer/Settings" unique_id=1824884914]
+[node name="ArrowMark" type="Marker2D" parent="MainMenu/Buttons/VBoxContainer/Settings" unique_id=1824884914]
+visible = false
 position = Vector2(-24, 40)
 
-[node name="Quit" type="Button" parent="MarginContainer/Buttons/VBoxContainer" unique_id=476510443]
+[node name="Quit" type="Button" parent="MainMenu/Buttons/VBoxContainer" unique_id=476510443]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
 theme = ExtResource("4_jmdev")
+theme_override_font_sizes/font_size = 150
 text = "QUIT"
 
-[node name="ArrowMark" type="Marker2D" parent="MarginContainer/Buttons/VBoxContainer/Quit" unique_id=1692003517]
-position = Vector2(16, 38)
+[node name="ArrowMark" type="Marker2D" parent="MainMenu/Buttons/VBoxContainer/Quit" unique_id=1692003517]
+position = Vector2(-38.5, 81)
+gizmo_extents = 36.1
 
 [node name="MainMusic" type="AudioStreamPlayer2D" parent="." unique_id=1669658983]
 position = Vector2(640, 366)
 stream = ExtResource("3_11y2r")
-volume_db = -14.275
+volume_db = -10.438
 autoplay = true
+bus = &"Music"
 
-[connection signal="focus_entered" from="MarginContainer/Buttons/VBoxContainer/Start" to="." method="_on_start_focus_entered"]
-[connection signal="focus_exited" from="MarginContainer/Buttons/VBoxContainer/Start" to="." method="_on_start_focus_exited"]
-[connection signal="pressed" from="MarginContainer/Buttons/VBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="focus_entered" from="MarginContainer/Buttons/VBoxContainer/Settings" to="." method="_on_settings_focus_entered"]
-[connection signal="focus_entered" from="MarginContainer/Buttons/VBoxContainer/Quit" to="." method="_on_quit_focus_entered"]
-[connection signal="pressed" from="MarginContainer/Buttons/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="focus_entered" from="MainMenu/Buttons/VBoxContainer/Start" to="." method="_on_start_focus_entered"]
+[connection signal="focus_exited" from="MainMenu/Buttons/VBoxContainer/Start" to="." method="_on_start_focus_exited"]
+[connection signal="pressed" from="MainMenu/Buttons/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="focus_entered" from="MainMenu/Buttons/VBoxContainer/Settings" to="." method="_on_settings_focus_entered"]
+[connection signal="pressed" from="MainMenu/Buttons/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="focus_entered" from="MainMenu/Buttons/VBoxContainer/Quit" to="." method="_on_quit_focus_entered"]
+[connection signal="pressed" from="MainMenu/Buttons/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
