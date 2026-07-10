@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://cv6r2wbfv4e8f" path="res://scenes/paddle.tscn" id="2_e2o6t"]
 [ext_resource type="AudioStream" uid="uid://ccfchsmq4yuc4" path="res://sounds/Music.mp3" id="2_gee14"]
 [ext_resource type="AudioStream" uid="uid://d4htl16ohnvtl" path="res://sounds/P1Score.wav" id="3_gee14"]
-[ext_resource type="Script" uid="uid://b1uy1vomhnlcl" path="res://scripts/ai_controller.gd" id="3_lbhrr"]
 [ext_resource type="FontFile" uid="uid://cutsycn651r7h" path="res://fonts/m3x6.ttf" id="4_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://ynccjdf7vc3r" path="res://sprites/Net.png" id="4_dinhu"]
 [ext_resource type="PackedScene" uid="uid://dhabs3fxf4gxp" path="res://scenes/ball.tscn" id="4_iywne"]
@@ -155,27 +154,31 @@ offset_left = 64.0
 offset_right = 1216.0
 offset_bottom = 95.0
 theme = SubResource("Theme_kvuet")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 22
 text = "PLAYER X WINS!"
 horizontal_alignment = 2
 
 [node name="P1Paddle" parent="." unique_id=621633140 instance=ExtResource("2_e2o6t")]
+unique_name_in_owner = true
 position = Vector2(16, 360)
 
-[node name="HitSound" parent="P1Paddle" index="3" unique_id=944500451]
+[node name="HitSound" parent="P1Paddle" index="4" unique_id=944500451]
 bus = &"SFX"
 
 [node name="P2Paddle" parent="." unique_id=382158452 instance=ExtResource("2_e2o6t")]
+unique_name_in_owner = true
 position = Vector2(1264, 360)
 
 [node name="Sprite2D" parent="P2Paddle" index="0" unique_id=1463686368]
 texture = ExtResource("7_kvpfn")
 flip_h = true
 
-[node name="paddle_controller" parent="P2Paddle" index="2" unique_id=1659258040]
-script = ExtResource("3_lbhrr")
-deadzoneScaling = Vector2(0.25, 0.5)
+[node name="player_controller" parent="P2Paddle" index="2" unique_id=1659258040]
+upControl = "P2Up"
+downControl = "P2Down"
 
-[node name="HitSound" parent="P2Paddle" index="3" unique_id=944500451]
+[node name="HitSound" parent="P2Paddle" index="4" unique_id=944500451]
 bus = &"SFX"
 
 [node name="Ball" parent="." unique_id=1672805614 instance=ExtResource("4_iywne")]

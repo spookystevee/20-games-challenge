@@ -1,8 +1,8 @@
 class_name AIController
 extends PaddleController
 
-#determine what side of the board we're on
-@onready var myside := 1 if paddle.global_position.x <  float(get_window().size.x) / 2 else 2
+# what side of the board we're on
+var myside: int
 
 # possible positions on the paddle
 enum PADDLEPOSITIONS {
@@ -11,13 +11,9 @@ enum PADDLEPOSITIONS {
 	BOTTOM
 }
 
-@onready var paddleHeight = paddle.get_node("CollisionShape2D").shape.size.y
+var paddleHeight: float
 # values for calculating the distance from each section of the paddle
-@onready var paddle_locations = {
-	PADDLEPOSITIONS.TOP: (-paddleHeight/2) + 15,
-	PADDLEPOSITIONS.MIDDLE: 0,
-	PADDLEPOSITIONS.BOTTOM: (paddleHeight/2) - 15
-}
+var paddle_locations: Dictionary
 
 @onready var desiredHitLocation = PADDLEPOSITIONS.TOP
 
@@ -31,12 +27,22 @@ var deadzone := 75.0
 
 var pauseFollow := true
 var servedToMe := false
+	
 
-func _ready() -> void:
+func initializePaddle() -> void:
+	if paddle:
+		myside = 1 if paddle.global_position.x <  float(get_window().size.x) / 2 else 2
+		paddleHeight = paddle.get_node("CollisionShape2D").shape.size.y
+		paddle_locations = {
+			PADDLEPOSITIONS.TOP: (-paddleHeight/2) + 15,
+			PADDLEPOSITIONS.MIDDLE: 0,
+			PADDLEPOSITIONS.BOTTOM: (paddleHeight/2) - 15
+		}
+	else:
+		push_error("AIController was unable to find Paddle during initialization.")
 	ball.paddle_hit.connect(_on_paddle_hit)
 	ball.ball_reset.connect(_on_reset)
 	ball.ball_serve.connect(_on_serve)
-	
 
 func _physics_process(_delta: float) -> void:
 	AIbrain()

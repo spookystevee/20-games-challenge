@@ -13,7 +13,7 @@ const P2WinAudio = preload("uid://dieki4uskjnci")
 
 var score := [0,0] # holds scores for players; index 0 is P1, index 1 is P2
 var isGameDone := false
-var max_score := 1 #score required to win
+var max_score := 5 #score required to win
 
 # signals
 signal P1Scored
@@ -28,9 +28,21 @@ signal P2Scored
 
 @onready var serve_indicator: ServeIndicator = %ServeIndicator
 
+@onready var p1_paddle: Paddle = %P1Paddle
+@onready var p2_paddle: Paddle = %P2Paddle
+
+const PController = preload("uid://cl2imbio1cgkr")
+const AiController = preload("uid://b1uy1vomhnlcl")
+
+
 var total_combo := 0 # the amount of times the ball has hit a paddle this round
 
+var player_prefs: PlayerPrefs
+
 func _ready() -> void:
+	PrepareGameState()
+
+func PrepareGameState() -> void:
 	P1Scored.connect(_on_P1Scored)
 	P2Scored.connect(_on_P2Scored)
 	var ball: Ball = get_tree().get_first_node_in_group("ball")
@@ -39,6 +51,27 @@ func _ready() -> void:
 	ball.paddle_hit.connect(_on_paddle_hit)
 	P1Scored.connect(_on_anyScored)
 	P2Scored.connect(_on_anyScored)
+	
+	player_prefs = PlayerPrefs.load_or_create()
+	
+	if !player_prefs: return
+	
+	var player_ctrl = p2_paddle.get_node("player_controller")
+	var ai_ctrl = p2_paddle.get_node("ai_controller")
+	
+	if player_prefs.currentGameType == player_prefs.GameType.LOCAL:
+		ai_ctrl.set_active(false)
+		
+		player_ctrl.upControl = "P2Up"
+		player_ctrl.downControl = "P2Down"
+		player_ctrl.set_active(true)
+	else:
+		player_ctrl.set_active(false)
+		
+		ai_ctrl.deadzoneScaling = player_prefs.currentDifficulty
+		
+		ai_ctrl.set_active(true)
+		ai_ctrl.initializePaddle()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("quit"):

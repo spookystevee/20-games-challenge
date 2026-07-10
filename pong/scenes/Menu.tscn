@@ -90,9 +90,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -95.999985
-offset_top = -133.0
-offset_right = 96.000015
+offset_left = -148.99998
+offset_top = -262.0
+offset_right = 160.00002
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -112,11 +112,13 @@ autoplay = &"button_focus"
 [node name="Start" type="Button" parent="MainMenu/Buttons/VBoxContainer" unique_id=750577948]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 6
 theme = ExtResource("4_jmdev")
 theme_override_colors/font_color = Color(0.45444822, 0.84175426, 0.66383076, 1)
 theme_override_colors/font_focus_color = Color(0.3773009, 0.7539969, 0.5824345, 1)
 theme_override_colors/font_pressed_color = Color(0.3399011, 0.7004027, 0.5373908, 1)
+theme_override_colors/font_hover_color = Color(0.3773009, 0.7539969, 0.5824345, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.3399011, 0.7004027, 0.5373908, 1)
 theme_override_font_sizes/font_size = 170
 text = "START"
 
@@ -148,6 +150,42 @@ text = "QUIT"
 position = Vector2(-38.5, 81)
 gizmo_extents = 36.1
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="MainMenu/Buttons" unique_id=1042516778]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 145.00002
+offset_top = -262.0
+offset_right = 366.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 4
+
+[node name="AI" type="Button" parent="MainMenu/Buttons/VBoxContainer2" unique_id=241041154]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_jmdev")
+theme_override_colors/font_color = Color(0.45444822, 0.84175426, 0.66383076, 1)
+theme_override_colors/font_focus_color = Color(0.3773009, 0.7539969, 0.5824345, 1)
+theme_override_colors/font_pressed_color = Color(0.3399011, 0.7004027, 0.5373908, 1)
+theme_override_colors/font_hover_color = Color(0.3773009, 0.7539969, 0.5824345, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.3399011, 0.7004027, 0.5373908, 1)
+theme_override_font_sizes/font_size = 170
+text = "AI"
+
+[node name="LOCAL" type="Button" parent="MainMenu/Buttons/VBoxContainer2" unique_id=1616342932]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("4_jmdev")
+theme_override_font_sizes/font_size = 150
+text = "LOCAL"
+
 [node name="MainMusic" type="AudioStreamPlayer2D" parent="." unique_id=1669658983]
 position = Vector2(640, 366)
 stream = ExtResource("3_11y2r")
@@ -162,3 +200,5 @@ bus = &"Music"
 [connection signal="pressed" from="MainMenu/Buttons/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="focus_entered" from="MainMenu/Buttons/VBoxContainer/Quit" to="." method="_on_quit_focus_entered"]
 [connection signal="pressed" from="MainMenu/Buttons/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MainMenu/Buttons/VBoxContainer2/AI" to="." method="_on_ai_pressed"]
+[connection signal="pressed" from="MainMenu/Buttons/VBoxContainer2/LOCAL" to="." method="_on_local_pressed"]

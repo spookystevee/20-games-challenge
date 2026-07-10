@@ -9,6 +9,8 @@ extends Control
 
 var game_scene := ("res://scenes/game.tscn")
 
+var player_prefs: PlayerPrefs
+
 
 func _enter_tree() -> void:
 	# On enter tree we connect to SceneTree.node_added signal to find all the buttons that will be added
@@ -24,6 +26,7 @@ func _input(event: InputEvent) -> void:
 		_on_quit_pressed()
 
 func _ready() -> void:
+	player_prefs = PlayerPrefs.load_or_create()
 	start.grab_focus()
 
 func _on_start_pressed() -> void:
@@ -34,12 +37,26 @@ func _on_start_focus_entered() -> void:
 	focus_arrow.reparent(start.get_node("ArrowMark"), false)
 
 
-func _on_settings_focus_entered() -> void:
-	focus_arrow.reparent(settings.get_node("ArrowMark"), false)
-
 func _on_quit_focus_entered() -> void:
 	focus_arrow.reparent(quit.get_node("ArrowMark"), false)
 
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_ai_pressed() -> void:
+	if player_prefs:
+		player_prefs.currentGameType = player_prefs.GameType.BOT
+		player_prefs.save()
+
+func _on_local_pressed() -> void:
+	if player_prefs:
+		player_prefs.currentGameType = player_prefs.GameType.LOCAL
+		player_prefs.save()
+
+func _on_normal_pressed() -> void:
+	player_prefs.currentDifficulty = PlayerPrefs.difficultyScaling[PlayerPrefs.Difficulty.NORMAL]
+	
+func _on_hard_pressed() -> void:
+	player_prefs.currentDifficulty = PlayerPrefs.difficultyScaling[PlayerPrefs.Difficulty.HARD]

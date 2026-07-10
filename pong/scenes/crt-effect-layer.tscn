@@ -5,5 +5,6 @@
 [node name="CanvasLayer" type="CanvasLayer" unique_id=947463020]
 layer = 1025
 follow_viewport_enabled = true
+follow_viewport_scale = 1.5
 
 [node name="CRTEffect" parent="." unique_id=965121202 instance=ExtResource("1_ha8ok")]
