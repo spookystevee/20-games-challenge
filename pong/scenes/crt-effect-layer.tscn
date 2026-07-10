@@ -1,10 +1,17 @@
 [gd_scene format=3 uid="uid://botft4s8psybw"]
 
-[ext_resource type="PackedScene" uid="uid://cdr0kx7mwldth" path="res://scenes/crt_effect.tscn" id="1_ha8ok"]
+[ext_resource type="Material" uid="uid://dqkwiq7l7anr0" path="res://resources/CRT.tres" id="1_ha8ok"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ca42v"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=947463020]
 layer = 1025
 follow_viewport_enabled = true
 follow_viewport_scale = 1.5
 
-[node name="CRTEffect" parent="." unique_id=965121202 instance=ExtResource("1_ha8ok")]
+[node name="CRTEffect" type="Sprite2D" parent="." unique_id=965121202]
+z_index = 5
+material = ExtResource("1_ha8ok")
+position = Vector2(672, 377.54)
+scale = Vector2(1552.0001, 862.821)
+texture = SubResource("CanvasTexture_ca42v")
