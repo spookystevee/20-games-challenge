@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cdr0kx7mwldth"]
 
-[ext_resource type="Material" uid="uid://dqkwiq7l7anr0" path="res://shaders/CRT.tres" id="1_y0u3h"]
+[ext_resource type="Material" uid="uid://dqkwiq7l7anr0" path="res://resources/CRT.tres" id="1_y0u3h"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ca42v"]
 

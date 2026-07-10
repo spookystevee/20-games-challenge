@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://djku31fexmbft"]
+
+[ext_resource type="Shader" uid="uid://dkextok2kucca" path="res://shaders/wobble.gdshader" id="1_tunw7"]
+
+[resource]
+shader = ExtResource("1_tunw7")
+shader_parameter/amplitude = 0.0450000021375
+shader_parameter/speed = 0.0750000035625

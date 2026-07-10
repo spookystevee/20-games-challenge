@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://chvkb1lr2tecp"
-path="res://.godot/imported/P1Win.wav-54e466a69428845ffe1b321554f47370.sample"
+path="res://.godot/imported/P1Win.wav-652960f061d97a5d84ef659fddc68941.sample"
 
 [deps]
 
-source_file="res://sounds/P1Win.wav"
-dest_files=["res://.godot/imported/P1Win.wav-54e466a69428845ffe1b321554f47370.sample"]
+source_file="res://sounds/game/P1Win.wav"
+dest_files=["res://.godot/imported/P1Win.wav-652960f061d97a5d84ef659fddc68941.sample"]
 
 [params]
 

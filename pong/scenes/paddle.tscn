@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c0yhhvf0asknq" path="res://scripts/paddle.gd" id="1_0sbc1"]
 [ext_resource type="Texture2D" uid="uid://7mhtaxel0t7x" path="res://sprites/PaddleP1.png" id="2_pacq5"]
 [ext_resource type="Script" uid="uid://cl2imbio1cgkr" path="res://scripts/player_controller.gd" id="2_y7wee"]
-[ext_resource type="AudioStream" uid="uid://drocc1o8j6ty6" path="res://sounds/hitB.mp3" id="3_mo4dg"]
+[ext_resource type="AudioStream" uid="uid://drocc1o8j6ty6" path="res://sounds/game/hitB.mp3" id="3_mo4dg"]
 [ext_resource type="Script" uid="uid://b1uy1vomhnlcl" path="res://scripts/ai_controller.gd" id="4_kvcsl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]

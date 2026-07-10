@@ -5,7 +5,7 @@
 [ext_resource type="SpriteFrames" uid="uid://fxwrv2ociiw7" path="res://sprites/explosion.tres" id="3_eew57"]
 [ext_resource type="Texture2D" uid="uid://cr6lpr2258t0c" path="res://sprites/fireParticle.tres" id="4_4dx81"]
 [ext_resource type="Gradient" uid="uid://bn2p5gd1ira5d" path="res://sprites/particleGradient.tres" id="5_eew57"]
-[ext_resource type="AudioStream" uid="uid://dtbp6kx74aw1k" path="res://sounds/bounce.mp3" id="6_jj7gd"]
+[ext_resource type="AudioStream" uid="uid://dtbp6kx74aw1k" path="res://sounds/game/bounce.mp3" id="6_jj7gd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7jktm"]
 radius = 13.0
@@ -433,7 +433,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_831qd")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 30.0
 }]

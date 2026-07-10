@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dchstiwrow07w" path="res://scripts/game.gd" id="1_feb5d"]
 [ext_resource type="PackedScene" uid="uid://cv6r2wbfv4e8f" path="res://scenes/paddle.tscn" id="2_e2o6t"]
-[ext_resource type="AudioStream" uid="uid://ccfchsmq4yuc4" path="res://sounds/Music.mp3" id="2_gee14"]
-[ext_resource type="AudioStream" uid="uid://d4htl16ohnvtl" path="res://sounds/P1Score.wav" id="3_gee14"]
-[ext_resource type="FontFile" uid="uid://cutsycn651r7h" path="res://fonts/m3x6.ttf" id="4_0tnpc"]
+[ext_resource type="AudioStream" uid="uid://ccfchsmq4yuc4" path="res://sounds/game/Music.mp3" id="2_gee14"]
+[ext_resource type="AudioStream" uid="uid://d4htl16ohnvtl" path="res://sounds/game/P1Score.wav" id="3_gee14"]
+[ext_resource type="FontFile" uid="uid://d02uw4a7ilnhm" path="res://fonts/m3x6.ttf" id="4_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://ynccjdf7vc3r" path="res://sprites/Net.png" id="4_dinhu"]
 [ext_resource type="PackedScene" uid="uid://dhabs3fxf4gxp" path="res://scenes/ball.tscn" id="4_iywne"]
 [ext_resource type="Texture2D" uid="uid://dnv7bpnv1rada" path="res://sprites/Background_space.png" id="4_vtaks"]

@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bjb6wdfp0sxcu"
-path="res://.godot/imported/P2Score.wav-5738c166652669c115a895160bfc35ae.sample"
+uid="uid://d4htl16ohnvtl"
+path="res://.godot/imported/P1Score.wav-1b602432b9e527549306e715fa5b6389.sample"
 
 [deps]
 
-source_file="res://sounds/P2Score.wav"
-dest_files=["res://.godot/imported/P2Score.wav-5738c166652669c115a895160bfc35ae.sample"]
+source_file="res://sounds/game/P1Score.wav"
+dest_files=["res://.godot/imported/P1Score.wav-1b602432b9e527549306e715fa5b6389.sample"]
 
 [params]
 

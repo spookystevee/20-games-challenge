@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://dieki4uskjnci"
-path="res://.godot/imported/P2Win.wav-5bf2c5a36342dbe24c29be893cee94f3.sample"
+path="res://.godot/imported/P2Win.wav-cd3dfe44fbce3a39d1b9825005baa598.sample"
 
 [deps]
 
-source_file="res://sounds/P2Win.wav"
-dest_files=["res://.godot/imported/P2Win.wav-5bf2c5a36342dbe24c29be893cee94f3.sample"]
+source_file="res://sounds/game/P2Win.wav"
+dest_files=["res://.godot/imported/P2Win.wav-cd3dfe44fbce3a39d1b9825005baa598.sample"]
 
 [params]
 

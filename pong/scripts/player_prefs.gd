@@ -18,6 +18,9 @@ static var difficultyScaling = {
 #Selected mode, either Local multiplayer or playing against a bot
 @export var currentGameType := GameType.BOT
 
+@export var music := true
+@export var sfx := true
+
 @export var currentDifficulty = difficultyScaling[Difficulty.NORMAL]
 
 func save() -> void:
